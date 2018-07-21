@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -33,4 +32,9 @@ dependencies {
 
     // Library
     implementation project(':rx-binding-adapters')
+
+    // Architecture
+    implementation "android.arch.lifecycle:extensions:$architecture_version"
+    implementation "android.arch.lifecycle:runtime:$architecture_version"
+    kapt "android.arch.lifecycle:compiler:$architecture_version"
 }
