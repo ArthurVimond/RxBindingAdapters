@@ -17,6 +17,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val username: BehaviorSubject<String> = BehaviorSubject.createDefault("Arthur")
     val listVisible: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(true)
     val favoriteLanguage: BehaviorSubject<String> = BehaviorSubject.createDefault("Kotlin")
+    val reverseText: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
 
     val buttonClicks: PublishSubject<Empty> = PublishSubject.create()
 
@@ -40,6 +41,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         favoriteLanguage.subscribe {
             // Do any needed logic
             Log.d("TAG", "favoriteLanguage.onNext: $it")
+        }.addTo(compositeDisposable)
+
+        // Subscribe to reverseText
+        reverseText.subscribe {
+            // Do any needed logic
+            Log.d("TAG", "reverseText.onNext: $it")
         }.addTo(compositeDisposable)
 
         // Subscribe to buttonClicks
