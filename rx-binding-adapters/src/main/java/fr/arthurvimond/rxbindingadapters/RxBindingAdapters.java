@@ -4,8 +4,15 @@ import android.databinding.BindingAdapter;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+
+import java.util.List;
 
 import io.reactivex.subjects.BehaviorSubject;
 
@@ -45,6 +52,35 @@ public class RxBindingAdapters {
 
         // Switch checked changes
         switchView.setOnCheckedChangeListener((compoundButton, checked) -> subject.onNext(checked));
+    }
+
+    @BindingAdapter({"rxItem", "rxItems"})
+    public static void rxItem(Spinner spinner, BehaviorSubject<String> subject, List<String> items) {
+
+        // Adapter
+        ArrayAdapter adapter = new ArrayAdapter(spinner.getContext(),
+                android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        // Initial value
+        int position = adapter.getPosition(subject.getValue());
+        spinner.setSelection(position);
+
+        // Selected item changes
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                String item = adapterView.getItemAtPosition(position).toString();
+                if (item != null && subject.getValue() != item) {
+                    subject.onNext(item);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
     }
 
 }
