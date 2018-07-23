@@ -7,19 +7,23 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import java.util.List;
 
 import io.reactivex.subjects.BehaviorSubject;
+import io.reactivex.subjects.Subject;
 
 /**
  * Created by Arthur Vimond on 21/07/2018.
  */
 public class RxBindingAdapters {
+
+    @BindingAdapter("rxClick")
+    public static void rxClick(View view, Subject<Empty> subject) {
+        view.setOnClickListener(view1 -> subject.onNext(Empty.VOID));
+    }
 
     @BindingAdapter("rxText")
     public static void rxText(EditText editText, final BehaviorSubject<String> subject) {
