@@ -12,7 +12,7 @@ import io.reactivex.subjects.BehaviorSubject;
  */
 public class RxBindingAdapters {
 
-    @BindingAdapter("app:rxText")
+    @BindingAdapter("rxText")
     public static void rxText(EditText editText, final BehaviorSubject<String> subject) {
 
         // Initial value
