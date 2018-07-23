@@ -1,12 +1,12 @@
 package fr.arthurvimond.rxbindingadapters;
 
 import android.databinding.BindingAdapter;
-import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -49,13 +49,13 @@ public class RxBindingAdapters {
     }
 
     @BindingAdapter("rxChecked")
-    public static void rxChecked(SwitchCompat switchView, final BehaviorSubject<Boolean> subject) {
+    public static void rxChecked(CompoundButton compoundButton, final BehaviorSubject<Boolean> subject) {
 
         // Initial value
-        switchView.setChecked(subject.getValue());
+        compoundButton.setChecked(subject.getValue());
 
         // Switch checked changes
-        switchView.setOnCheckedChangeListener((compoundButton, checked) -> subject.onNext(checked));
+        compoundButton.setOnCheckedChangeListener((compoundButton1, checked) -> subject.onNext(checked));
     }
 
     @BindingAdapter({"rxItem", "rxItems"})
