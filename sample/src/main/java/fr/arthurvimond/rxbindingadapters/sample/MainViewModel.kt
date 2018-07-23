@@ -13,7 +13,8 @@ import io.reactivex.subjects.BehaviorSubject
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val username: BehaviorSubject<String> = BehaviorSubject.createDefault("Arthur")
-    val listVisible: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
+    val listVisible: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(true)
+    val favoriteLanguage: BehaviorSubject<String> = BehaviorSubject.createDefault("Kotlin")
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -25,11 +26,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             Log.d("TAG", "username.onNext: $it")
         }.addTo(compositeDisposable)
 
-        // Subscribe to username
+        // Subscribe to listVisible
         listVisible.subscribe {
             // Do any needed logic
             Log.d("TAG", "listVisible.onNext: $it")
         }.addTo(compositeDisposable)
+
+        // Subscribe to favoriteLanguage
+        favoriteLanguage.subscribe {
+            // Do any needed logic
+            Log.d("TAG", "favoriteLanguage.onNext: $it")
+        }.addTo(compositeDisposable)
+    }
+
+    fun getLanguageList(): List<String> {
+        return listOf("Kotlin", "Java", "Swift", "Dart", "JavaScript")
     }
 
     override fun onCleared() {
