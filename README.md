@@ -3,11 +3,10 @@ Direct integration of RxJava with the Data Binding library.
 
 # Gradle Setup
 
-_(Not available yet)_
 ```groovy
 dependencies {
     // ...
-    implementation 'fr.arthurvimond.rx-binding-adapters:core:0.1.0'
+    implementation 'fr.arthurvimond.rxbindingadapters:core:0.1.0'
 }
 ```
 
