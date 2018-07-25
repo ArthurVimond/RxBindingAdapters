@@ -5,4 +5,6 @@
     <string name="button">Button</string>
     <string name="reverseText">Reverse text</string>
     <string name="longClick">Long click</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
 </resources>
