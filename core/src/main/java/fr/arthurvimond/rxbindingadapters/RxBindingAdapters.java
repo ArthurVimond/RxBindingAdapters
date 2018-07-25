@@ -3,6 +3,7 @@ package fr.arthurvimond.rxbindingadapters;
 import android.databinding.BindingAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,14 @@ public class RxBindingAdapters {
     public static void rxLongClick(View view, Subject<Empty> subject) {
         view.setOnLongClickListener(view1 -> {
             subject.onNext(Empty.VOID);
+            return true;
+        });
+    }
+
+    @BindingAdapter("rxTouch")
+    public static void rxTouch(View view, Subject<MotionEvent> subject) {
+        view.setOnTouchListener((view1, motionEvent) -> {
+            subject.onNext(motionEvent);
             return true;
         });
     }
