@@ -25,6 +25,14 @@ public class RxBindingAdapters {
         view.setOnClickListener(view1 -> subject.onNext(Empty.VOID));
     }
 
+    @BindingAdapter("rxLongClick")
+    public static void rxLongClick(View view, Subject<Empty> subject) {
+        view.setOnLongClickListener(view1 -> {
+            subject.onNext(Empty.VOID);
+            return true;
+        });
+    }
+
     @BindingAdapter("rxText")
     public static void rxText(EditText editText, final BehaviorSubject<String> subject) {
 
