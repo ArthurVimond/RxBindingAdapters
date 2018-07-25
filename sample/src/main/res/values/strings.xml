@@ -4,4 +4,5 @@
     <string name="listSwitchTitleLabel">Display list</string>
     <string name="button">Button</string>
     <string name="reverseText">Reverse text</string>
+    <string name="longClick">Long click</string>
 </resources>

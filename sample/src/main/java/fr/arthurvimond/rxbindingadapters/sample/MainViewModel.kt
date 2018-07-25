@@ -20,6 +20,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val reverseText: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
 
     val buttonClicks: PublishSubject<Empty> = PublishSubject.create()
+    val imageLongClicks: PublishSubject<Empty> = PublishSubject.create()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -53,6 +54,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         buttonClicks.subscribe {
             // Do any needed logic
             Log.d("TAG", "buttonClicks.onNext: $it")
+        }.addTo(compositeDisposable)
+
+        // Subscribe to imageLongClicks
+        imageLongClicks.subscribe {
+            // Do any needed logic
+            Log.d("TAG", "imageLongClicks.onNext: $it")
         }.addTo(compositeDisposable)
     }
 
