@@ -3,6 +3,7 @@ package fr.arthurvimond.rxbindingadapters.sample
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.util.Log
+import android.view.MotionEvent
 import fr.arthurvimond.rxbindingadapters.Empty
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -21,6 +22,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val buttonClicks: PublishSubject<Empty> = PublishSubject.create()
     val imageLongClicks: PublishSubject<Empty> = PublishSubject.create()
+
+    val viewTouchEvents: PublishSubject<MotionEvent> = PublishSubject.create()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -60,6 +63,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         imageLongClicks.subscribe {
             // Do any needed logic
             Log.d("TAG", "imageLongClicks.onNext: $it")
+        }.addTo(compositeDisposable)
+
+        // Subscribe to viewTouchEvents
+        viewTouchEvents.subscribe {
+            // Do any needed logic
+            Log.d("TAG", "viewTouchEvents.onNext: x: ${it.x} - y: ${it.y}")
         }.addTo(compositeDisposable)
     }
 
