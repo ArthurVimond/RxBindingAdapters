@@ -44,7 +44,8 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
     // Library
-    implementation project(':rx-binding-adapters')
+    implementation project(':core')
+//    implementation 'fr.arthurvimond.rxbindingadapters:core:0.1.0'
 
     // Architecture
     implementation "android.arch.lifecycle:extensions:$architecture_version"
