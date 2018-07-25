@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -101,6 +103,25 @@ public class RxBindingAdapters {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
+        });
+    }
+
+    @BindingAdapter("rxItem")
+    public static void rxItem(RadioGroup radioGroup, BehaviorSubject<String> subject) {
+
+        // Initial value
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            RadioButton button = (RadioButton) radioGroup.getChildAt(i);
+            if (button.getText().toString().equals(subject.getValue())) {
+                button.setChecked(true);
+            }
+        }
+
+        // RadioGroup checked changes
+        radioGroup.setOnCheckedChangeListener((radioGroup1, checkedId) -> {
+            RadioButton checkedButton = radioGroup1.findViewById(checkedId);
+            String text = checkedButton.getText().toString();
+            subject.onNext(text);
         });
     }
 
