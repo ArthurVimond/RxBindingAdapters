@@ -5,6 +5,9 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import fr.arthurvimond.rxbindingadapters.sample.databinding.MainActivityBinding
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,11 +21,35 @@ class MainActivity : AppCompatActivity() {
         ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
+    // Rx
+    private val compositeDisposable = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Set ViewModel
         binding.viewModel = viewModel
 
+        observeProperties()
+
     }
+
+    private fun observeProperties() {
+
+        // Age value TextView
+        viewModel.age
+                .subscribe {
+                    ageValueTextView.text = "$it"
+                }.addTo(compositeDisposable)
+    }
+
+    override fun onDestroy() {
+        disposeObservers()
+        super.onDestroy()
+    }
+
+    private fun disposeObservers() {
+        compositeDisposable.dispose()
+    }
+
 }

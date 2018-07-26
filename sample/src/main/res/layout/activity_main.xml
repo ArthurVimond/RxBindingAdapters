@@ -73,28 +73,64 @@
 
                 </RadioGroup>
 
+                <TextView
+                    android:id="@+id/ageTitleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/age"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/genderRadioGroup" />
+
+                <TextView
+                    android:id="@+id/ageValueTextView"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:gravity="end"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ageSeekBar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ageSeekBar"
+                    tools:text="115" />
+
+                <SeekBar
+                    android:id="@+id/ageSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/ageValueTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ageTitleTextView"
+                    app:rxMax="@{viewModel.getMaxAge}"
+                    app:rxMin="@{viewModel.getMinAge}"
+                    app:rxProgress="@{viewModel.age}" />
+
+                <TextView
+                    android:id="@+id/displayListTitleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/listSwitchTitleLabel"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/displaySwitch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ageSeekBar" />
+
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/displaySwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/displayListTitleTextView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/genderRadioGroup"
+                    app:layout_constraintTop_toTopOf="@id/displayListTitleTextView"
                     app:rxChecked="@{viewModel.listVisible}" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/listSwitchTitleLabel"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/displaySwitch"
-                    app:layout_constraintEnd_toStartOf="@+id/displaySwitch"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/displaySwitch" />
 
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/languageSpinner"
@@ -105,7 +141,7 @@
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/displayListTitleTextView"
                     app:rxItem="@{viewModel.favoriteLanguage}"
                     app:rxItems="@{viewModel.getLanguageList()}" />
 

@@ -16,6 +16,7 @@ import io.reactivex.subjects.PublishSubject
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val username: BehaviorSubject<String> = BehaviorSubject.createDefault("Arthur")
+    val age: BehaviorSubject<Int> = BehaviorSubject.createDefault(20)
     val listVisible: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(true)
     val favoriteLanguage: BehaviorSubject<String> = BehaviorSubject.createDefault("Kotlin")
     val reverseText: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
@@ -35,6 +36,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         username.subscribe {
             // Do any needed logic
             Log.d("TAG", "username.onNext: $it")
+        }.addTo(compositeDisposable)
+
+        // Subscribe to age
+        age.subscribe {
+            // Do any needed logic
+            Log.d("TAG", "age.onNext: $it")
         }.addTo(compositeDisposable)
 
         // Subscribe to listVisible
@@ -78,6 +85,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             // Do any needed logic
             Log.d("TAG", "viewTouchEvents.onNext: x: ${it.x} - y: ${it.y}")
         }.addTo(compositeDisposable)
+    }
+
+    fun getMinAge(): Int {
+        return 0
+    }
+
+    fun getMaxAge(): Int {
+        return 115
     }
 
     fun getLanguageList(): List<String> {
