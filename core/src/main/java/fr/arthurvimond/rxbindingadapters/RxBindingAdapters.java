@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -123,6 +124,51 @@ public class RxBindingAdapters {
             String text = checkedButton.getText().toString();
             subject.onNext(text);
         });
+    }
+
+    @BindingAdapter({"rxProgress", "rxMin", "rxMax"})
+    public static void rxProgress(SeekBar seekBar, BehaviorSubject<Integer> subject, int min, int max) {
+        int step = max - min;
+        rxProgressWithStep(seekBar, subject, min, max, step);
+    }
+
+    @BindingAdapter({"rxProgress", "rxMin", "rxMax", "rxStep"})
+    public static void rxProgressWithStep(SeekBar seekBar, BehaviorSubject<Integer> subject,
+                                          int min, int max, int step) {
+
+        // Limit ranges
+        if (subject.getValue() < min) {
+            subject.onNext(min);
+        }
+
+        if (subject.getValue() > max) {
+            subject.onNext(max);
+        }
+
+        int mappedProgress = (int) MathUtils.map(subject.getValue(), min, max, 0, step);
+
+        // SeekBar progress changes
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    int unmappedProgress = (int) MathUtils.map(progress, 0, step, min, max);
+                    subject.onNext(unmappedProgress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        // Initial value
+        seekBar.setMax(step);
+        seekBar.setProgress(mappedProgress);
     }
 
 }
