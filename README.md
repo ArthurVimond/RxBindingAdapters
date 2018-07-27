@@ -1,7 +1,18 @@
 # RxBindingAdapters
-Direct integration of RxJava with the Data Binding library.
+A collection of BindingAdapters for direct integration of RxJava with the Data Binding library.
 
 # Gradle Setup
+
+Check that you have the `jcenter` repository in your Project's `build.gradle` file:
+
+```groovy
+repositories {
+    // ...
+    jcenter()    
+}
+```
+
+Add the dependency in your Module's `build.gradle` file:
 
 ```groovy
 dependencies {
@@ -15,6 +26,7 @@ dependencies {
 ## EditText text changes
 
 XML layout:
+
 ```xml
 <android.support.design.widget.TextInputEditText
     android:layout_width="match_parent"
@@ -23,6 +35,7 @@ XML layout:
 ```
 
 ViewModel:
+
 ```kotlin
 class MainViewModel() : ViewModel() {
   
@@ -36,6 +49,7 @@ class MainViewModel() : ViewModel() {
 ## CompoundButton checked changes
 
 XML layout:
+
 ```xml
 <android.support.v7.widget.SwitchCompat
     android:layout_width="wrap_content"
@@ -44,6 +58,7 @@ XML layout:
 ```
 
 ViewModel:
+
 ```kotlin
 class MainViewModel() : ViewModel() {
   
@@ -57,6 +72,7 @@ class MainViewModel() : ViewModel() {
 ## Spinner selection changes
 
 XML layout:
+
 ```xml
 <android.support.v7.widget.AppCompatSpinner
     android:layout_width="match_parent"
@@ -66,6 +82,7 @@ XML layout:
 ```
 
 ViewModel:
+
 ```kotlin
 class MainViewModel() : ViewModel() {
   
@@ -83,6 +100,7 @@ class MainViewModel() : ViewModel() {
 ## View clicks
 
 XML layout:
+
 ```xml
 <Button
     android:layout_width="wrap_content"
@@ -91,6 +109,7 @@ XML layout:
 ```
 
 ViewModel:
+
 ```kotlin
 class MainViewModel() : ViewModel() {
   
