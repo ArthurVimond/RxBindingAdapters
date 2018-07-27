@@ -45,7 +45,7 @@ dependencies {
 
     // Library
     implementation project(':core')
-//    implementation 'fr.arthurvimond.rxbindingadapters:core:0.1.0'
+//    implementation 'fr.arthurvimond.rxbindingadapters:core:0.2.0'
 
     // Architecture
     implementation "android.arch.lifecycle:extensions:$architecture_version"
