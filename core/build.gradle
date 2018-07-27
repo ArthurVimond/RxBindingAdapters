@@ -6,7 +6,7 @@ ext {
 
     publishedGroupId = 'fr.arthurvimond.rxbindingadapters'
     artifact = 'core'
-    libraryVersion = "0.1.0"
+    libraryVersion = "0.2.0"
 
     libraryName = 'RxBindingAdapters'
     libraryDescription = 'Direct integration of RxJava with the Data Binding library.'
