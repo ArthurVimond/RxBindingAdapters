@@ -234,7 +234,46 @@ class MainViewModel() : ViewModel() {
 }
 ```
 
+Note: By default, the number of steps will be automatically assigned based on the min and max values.
+If you want to manually set a specific step number, add the `app:rxStep` XML attribute (see below).
 
+## SeekBar progress changes (custom step)
+
+XML layout:
+
+```xml
+<SeekBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:rxMax="@{viewModel.getMaxAge}"
+    app:rxMin="@{viewModel.getMinAge}"
+    app:rxProgress="@{viewModel.age}"
+    app:rxStep="@{viewModel.getSeekBarStep}" />
+```
+
+ViewModel:
+
+```kotlin
+class MainViewModel() : ViewModel() {
+  
+    val age: BehaviorSubject<Int> = BehaviorSubject.createDefault(20)
+    
+    fun getMinAge(): Int {
+        return 0
+    }
+
+    fun getMaxAge(): Int {
+        return 115
+    }
+    
+    fun getSeekBarStep(): Int {
+        return 10
+    }
+    
+    // ...
+  
+}
+```
 
 # License
 
