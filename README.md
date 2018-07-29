@@ -21,7 +21,54 @@ dependencies {
 }
 ```
 
-# Usage examples
+# BindingAdapter List
+
+## View clicks
+
+XML layout:
+
+```xml
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:rxClick="@{viewModel.buttonClicks}" />
+```
+
+ViewModel:
+
+```kotlin
+class MainViewModel() : ViewModel() {
+  
+    val buttonClicks: PublishSubject<Empty> = PublishSubject.create()
+    
+    // ...
+  
+}
+```
+
+## View long clicks
+
+XML layout:
+
+```xml
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:rxLongClick="@{viewModel.buttonLongClicks}" />
+```
+
+ViewModel:
+
+```kotlin
+class MainViewModel() : ViewModel() {
+  
+    val buttonLongClicks: PublishSubject<Empty> = PublishSubject.create()
+    
+    // ...
+  
+}
+```
+
 
 ## EditText text changes
 
@@ -91,29 +138,6 @@ class MainViewModel() : ViewModel() {
     fun getLanguageList(): List<String> {
         return listOf("Kotlin", "Java", "Swift", "Dart", "JavaScript")
     }
-    
-    // ...
-  
-}
-```
-
-## View clicks
-
-XML layout:
-
-```xml
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:rxClick="@{viewModel.buttonClicks}" />
-```
-
-ViewModel:
-
-```kotlin
-class MainViewModel() : ViewModel() {
-  
-    val buttonClicks: PublishSubject<Empty> = PublishSubject.create()
     
     // ...
   
