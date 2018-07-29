@@ -3,6 +3,7 @@ package fr.arthurvimond.rxbindingadapters.sample
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import fr.arthurvimond.rxbindingadapters.sample.databinding.MainActivityBinding
@@ -50,10 +51,24 @@ class MainActivity : AppCompatActivity() {
                 }
                 .addTo(compositeDisposable)
 
+        // Button clicks
+        viewModel.buttonClicks
+                .subscribe { showSnackbar("Button click") }
+                .addTo(compositeDisposable)
+
+        // Image long clicks
+        viewModel.imageLongClicks
+                .subscribe { showSnackbar("Image long click") }
+                .addTo(compositeDisposable)
+
         // Result text
         viewModel.getResultText()
                 .subscribe { resultTextView.text = it }
                 .addTo(compositeDisposable)
+    }
+
+    private fun showSnackbar(text: String) {
+        Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {
