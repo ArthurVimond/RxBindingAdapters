@@ -69,6 +69,28 @@ class MainViewModel() : ViewModel() {
 }
 ```
 
+## View touch events
+
+XML layout:
+
+```xml
+<View
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:rxTouch="@{viewModel.touchEvents}" />
+```
+
+ViewModel:
+
+```kotlin
+class MainViewModel() : ViewModel() {
+  
+    val touchEvents: PublishSubject<MotionEvent> = PublishSubject.create()
+    
+    // ...
+  
+}
+```
 
 ## EditText text changes
 
