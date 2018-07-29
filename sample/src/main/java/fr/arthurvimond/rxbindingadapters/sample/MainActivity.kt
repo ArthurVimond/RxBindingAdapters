@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import fr.arthurvimond.rxbindingadapters.sample.databinding.MainActivityBinding
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -41,6 +42,13 @@ class MainActivity : AppCompatActivity() {
                 .subscribe {
                     ageValueTextView.text = "$it"
                 }.addTo(compositeDisposable)
+
+        // Display list
+        viewModel.listVisible
+                .subscribe {
+                    languageSpinner.visibility = if (it) View.VISIBLE else View.GONE
+                }
+                .addTo(compositeDisposable)
 
         // Result text
         viewModel.getResultText()
