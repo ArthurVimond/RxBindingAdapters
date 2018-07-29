@@ -204,6 +204,41 @@ class MainViewModel() : ViewModel() {
 }
 ```
 
+## SeekBar progress changes (auto step)
+
+XML layout:
+
+```xml
+<SeekBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:rxMax="@{viewModel.getMaxAge}"
+    app:rxMin="@{viewModel.getMinAge}"
+    app:rxProgress="@{viewModel.age}" />
+```
+
+ViewModel:
+
+```kotlin
+class MainViewModel() : ViewModel() {
+  
+    val age: BehaviorSubject<Int> = BehaviorSubject.createDefault(20)
+    
+    fun getMinAge(): Int {
+        return 0
+    }
+
+    fun getMaxAge(): Int {
+        return 115
+    }
+    
+    // ...
+  
+}
+```
+
+
+
 # License
 
 ```
