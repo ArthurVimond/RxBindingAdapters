@@ -147,19 +147,16 @@ XML layout:
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:rxItem="@{viewModel.gender}">
-    
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Male" />
-        
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Female" />
-        
 
 </RadioGroup>
 ```
