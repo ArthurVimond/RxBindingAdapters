@@ -185,7 +185,7 @@ XML layout:
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:rxItem="@{viewModel.favoriteLanguage}"
-    app:rxItems="@{viewModel.getLanguageList()}" />
+    app:rxItems="@{viewModel.getLanguageList}" />
 ```
 
 ViewModel:
