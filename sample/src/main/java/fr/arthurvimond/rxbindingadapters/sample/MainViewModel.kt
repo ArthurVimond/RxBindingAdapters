@@ -5,7 +5,9 @@ import android.arch.lifecycle.AndroidViewModel
 import android.util.Log
 import android.view.MotionEvent
 import fr.arthurvimond.rxbindingadapters.Empty
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
@@ -97,6 +99,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getLanguageList(): List<String> {
         return listOf("Kotlin", "Java", "Swift", "Dart", "JavaScript")
+    }
+
+    fun getResultText(): Observable<String> {
+
+        val genderText = gender.map {
+            when (it) {
+                "Male" -> "Mister"
+                "Female" -> "Miss"
+                else -> ""
+            }
+        }
+
+        val sentence = Observables.combineLatest(username, genderText, age, favoriteLanguage)
+        { username, genderText, age, language ->
+            "Hello $genderText $username, you are $age years old, you prefer the $language language!"
+        }
+
+        return Observables.combineLatest(sentence, reverseText) { sentence, reverse ->
+            if (reverse) sentence.reversed() else sentence
+        }
+
     }
 
     override fun onCleared() {

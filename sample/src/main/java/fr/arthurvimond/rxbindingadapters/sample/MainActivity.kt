@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity() {
                 .subscribe {
                     ageValueTextView.text = "$it"
                 }.addTo(compositeDisposable)
+
+        // Result text
+        viewModel.getResultText()
+                .subscribe { resultTextView.text = it }
+                .addTo(compositeDisposable)
     }
 
     override fun onDestroy() {
