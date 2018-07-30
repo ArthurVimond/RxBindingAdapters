@@ -2,7 +2,7 @@
     <string name="app_name">RxBindingAdapters</string>
     <string name="username">Username</string>
     <string name="age">Age</string>
-    <string name="listSwitchTitleLabel">Display list</string>
+    <string name="favoriteLanguage">Favorite language</string>
     <string name="button">Button</string>
     <string name="reverseText">Reverse text</string>
     <string name="longClick">Long click</string>

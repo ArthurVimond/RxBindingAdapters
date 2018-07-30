@@ -110,26 +110,26 @@
                     app:rxProgress="@{viewModel.age}" />
 
                 <TextView
-                    android:id="@+id/displayListTitleTextView"
+                    android:id="@+id/favoriteLanguageTitleTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@string/listSwitchTitleLabel"
+                    android:text="@string/favoriteLanguage"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toStartOf="@+id/displaySwitch"
+                    app:layout_constraintEnd_toStartOf="@+id/displayLanguageListSwitch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ageSeekBar" />
 
                 <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/displaySwitch"
+                    android:id="@+id/displayLanguageListSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/displayListTitleTextView"
+                    app:layout_constraintBottom_toBottomOf="@+id/favoriteLanguageTitleTextView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/displayListTitleTextView"
+                    app:layout_constraintTop_toTopOf="@id/favoriteLanguageTitleTextView"
                     app:rxChecked="@{viewModel.listVisible}" />
 
                 <android.support.v7.widget.AppCompatSpinner
@@ -138,10 +138,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/displayListTitleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/favoriteLanguageTitleTextView"
                     app:rxItem="@{viewModel.favoriteLanguage}"
                     app:rxItems="@{viewModel.getLanguageList()}" />
 
