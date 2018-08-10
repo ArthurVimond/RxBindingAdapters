@@ -1,5 +1,5 @@
 # RxBindingAdapters
-[ ![Download](https://api.bintray.com/packages/arthurvimond/RxBindingAdapters/RxBindingAdapters/images/download.svg) ](https://bintray.com/arthurvimond/RxBindingAdapters/RxBindingAdapters/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/arthurvimond/RxBindingAdapters/core/images/download.svg) ](https://bintray.com/arthurvimond/RxBindingAdapters/core/_latestVersion)
 
 A collection of BindingAdapters for direct integration of RxJava with the Data Binding library.
 
